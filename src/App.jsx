@@ -1,22 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchBar from "./components/SearchBar";
 import EmployeeTable from "./components/EmployeeTable";
 import EmployeeForm from "./components/EmployeeForm";
+import {
+  getEmployees,
+  addEmployee,
+  updateEmployee,
+  deleteEmployee,
+} from "./services/employeeService";
 import "./App.css";
 
-const initialEmployees = [
-  { id: "EMP001", name: "Rahul", email: "rahul@gmail.com", department: "IT", phone: "9876543210", dob: "2000-01-15" },
-  { id: "EMP002", name: "Priya", email: "priya@gmail.com", department: "HR", phone: "9876543211", dob: "1999-05-20" },
-  { id: "EMP003", name: "Amit", email: "amit@gmail.com", department: "Finance", phone: "9876543212", dob: "1998-09-10" },
-];
-
 function App() {
-  const [employees, setEmployees] = useState(initialEmployees);
+  const [employees, setEmployees] = useState([]);
   const [search, setSearch] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [editingEmployee, setEditingEmployee] = useState(null);
   const [message, setMessage] = useState("");
-  const [nextId, setNextId] = useState(4);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  // Runs once when the page loads
+  useEffect(() => {
+    const fetchEmployees = async () => {
+      try {
+        const data = await getEmployees();
+        setEmployees(data);
+      } catch (err) {
+        setError("Could not load employees. Is the backend running?");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchEmployees();
+  }, []);
 
   const showMessage = (text) => {
     setMessage(text);
@@ -28,21 +44,22 @@ function App() {
     setEditingEmployee(null);
   };
 
-  const handleSave = (data) => {
-    if (editingEmployee) {
-      setEmployees(
-        employees.map((emp) =>
-          emp.id === editingEmployee.id ? { ...emp, ...data } : emp
-        )
-      );
-      showMessage("Employee updated successfully!");
-    } else {
-      const id = "EMP" + String(nextId).padStart(3, "0");
-      setEmployees([...employees, { id, ...data }]);
-      setNextId(nextId + 1);
-      showMessage("Employee added successfully!");
+  const handleSave = async (data) => {
+    try {
+      setError("");
+      if (editingEmployee) {
+        const updated = await updateEmployee(editingEmployee.id, data);
+        setEmployees(employees.map((emp) => (emp.id === updated.id ? updated : emp)));
+        showMessage("Employee updated successfully!");
+      } else {
+        const created = await addEmployee(data);
+        setEmployees([...employees, created]);
+        showMessage("Employee added successfully!");
+      }
+      closeForm();
+    } catch (err) {
+      setError(err.message);
     }
-    closeForm();
   };
 
   const handleEdit = (employee) => {
@@ -50,16 +67,22 @@ function App() {
     setShowForm(true);
   };
 
-  const handleDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete this employee?")) {
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this employee?")) return;
+    try {
+      setError("");
+      await deleteEmployee(id);
       setEmployees(employees.filter((emp) => emp.id !== id));
       showMessage("Employee deleted.");
+    } catch (err) {
+      setError(err.message);
     }
   };
 
   const filteredEmployees = employees.filter((emp) =>
     emp.name.toLowerCase().includes(search.toLowerCase())
   );
+
 
   return (
     <div className="container">
@@ -93,6 +116,9 @@ function App() {
         onEdit={handleEdit}
         onDelete={handleDelete}
       />
+
+      {error && <div className="error-message">⚠ {error}</div>}
+      {loading && <p>Loading employees...</p>}
     </div>
   );
 }

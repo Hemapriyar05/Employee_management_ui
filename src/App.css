@@ -3,7 +3,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #b2cef8;
+  background: #f4f6f9;
 }
 
 .container {
@@ -48,6 +48,14 @@ h1 { margin-top: 0; color: #222; }
 .success-message {
   background: #d1fae5;
   color: #065f46;
+  padding: 10px 14px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.error-message {
+  background: #fee2e2;
+  color: #991b1b;
   padding: 10px 14px;
   border-radius: 4px;
   margin-bottom: 15px;
@@ -103,9 +111,7 @@ h1 { margin-top: 0; color: #222; }
 /* Phones */
 @media (max-width: 600px) {
   /* Stack search and Add button */
-  .toolbar {
-    flex-direction: column;
-  }
+  .toolbar { flex-direction: column; }
   .toolbar .btn {
     width: 100%;
     padding: 12px;
@@ -119,7 +125,7 @@ h1 { margin-top: 0; color: #222; }
     font-size: 16px;
   }
 
-  /* Form buttons side by side, full width */
+  /* Form buttons side by side */
   .form-actions {
     display: flex;
     gap: 8px;
@@ -130,7 +136,7 @@ h1 { margin-top: 0; color: #222; }
     margin-right: 0;
   }
 
-  /* Turn table rows into cards */
+  /* Table rows become cards */
   .employee-table,
   .employee-table tbody,
   .employee-table tr,
@@ -161,7 +167,7 @@ h1 { margin-top: 0; color: #222; }
   }
   .employee-table td:last-child { border-bottom: none; }
 
-  /* Column names, added with CSS only */
+  /* Column labels, added with CSS only */
   .employee-table td::before {
     font-weight: bold;
     color: #6b7280;
@@ -174,7 +180,7 @@ h1 { margin-top: 0; color: #222; }
   .employee-table td:nth-child(4)::before { content: "Department"; }
   .employee-table td:nth-child(5)::before { content: "Action"; }
 
-  /* Edit / Delete buttons share the width */
+  /* Edit and Delete share the width */
   .employee-table td:last-child .btn {
     flex: 1;
     padding: 10px;
