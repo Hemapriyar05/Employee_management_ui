@@ -1,4 +1,4 @@
-# 👥 Employee Management UI
+# Employee Management UI
 
 A clean and responsive **Employee Management page** inspired by Meepl HRMS, built with **React.js**. It lets users view, search, add, edit and delete employees, with form validation and success messages. No backend or database is needed; all data is managed with React state.
 
