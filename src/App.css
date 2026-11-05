@@ -85,3 +85,11 @@ h1 { margin-top: 0; color: #222; }
 }
 .employee-table th { background: #f1f5f9; }
 .empty { text-align: center; color: #888; }
+
+.error-message {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 10px 14px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
