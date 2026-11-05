@@ -85,3 +85,103 @@ h1 { margin-top: 0; color: #222; }
 }
 .employee-table th { background: #f1f5f9; }
 .empty { text-align: center; color: #888; }
+
+/* ================= Responsive ================= */
+
+/* Tablets and below */
+@media (max-width: 768px) {
+  .container {
+    margin: 16px 12px;
+    padding: 16px;
+  }
+
+  h1 { font-size: 24px; }
+
+  .search-input { max-width: 100%; }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+  /* Stack search and Add button */
+  .toolbar {
+    flex-direction: column;
+  }
+  .toolbar .btn {
+    width: 100%;
+    padding: 12px;
+    margin-right: 0;
+  }
+
+  /* 16px stops iPhones from zooming into inputs */
+  .search-input,
+  .employee-form input,
+  .employee-form select {
+    font-size: 16px;
+  }
+
+  /* Form buttons side by side, full width */
+  .form-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .form-actions .btn {
+    flex: 1;
+    padding: 12px;
+    margin-right: 0;
+  }
+
+  /* Turn table rows into cards */
+  .employee-table,
+  .employee-table tbody,
+  .employee-table tr,
+  .employee-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .employee-table thead { display: none; }
+
+  .employee-table tr {
+    margin-bottom: 14px;
+    padding: 6px 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+
+  .employee-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    text-align: right;
+    word-break: break-word;
+  }
+  .employee-table td:last-child { border-bottom: none; }
+
+  /* Column names, added with CSS only */
+  .employee-table td::before {
+    font-weight: bold;
+    color: #6b7280;
+    text-align: left;
+    flex-shrink: 0;
+  }
+  .employee-table td:nth-child(1)::before { content: "Employee ID"; }
+  .employee-table td:nth-child(2)::before { content: "Name"; }
+  .employee-table td:nth-child(3)::before { content: "Email"; }
+  .employee-table td:nth-child(4)::before { content: "Department"; }
+  .employee-table td:nth-child(5)::before { content: "Action"; }
+
+  /* Edit / Delete buttons share the width */
+  .employee-table td:last-child .btn {
+    flex: 1;
+    padding: 10px;
+    margin: 0 0 0 6px;
+  }
+
+  /* "No employees found" row */
+  .employee-table td.empty { justify-content: center; }
+  .employee-table td.empty::before { content: none; }
+}
