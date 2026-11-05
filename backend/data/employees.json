@@ -30,5 +30,13 @@
     "dob": "2006-02-07",
     "department": "IT",
     "id": "EMP004"
+  },
+  {
+    "name": "Ann",
+    "email": "ann90@gmail.com",
+    "phone": "9876456376",
+    "dob": "2001-07-11",
+    "department": "Marketing",
+    "id": "EMP005"
   }
 ]
