@@ -116,6 +116,9 @@ function App() {
         onEdit={handleEdit}
         onDelete={handleDelete}
       />
+
+      {error && <div className="error-message">⚠ {error}</div>}
+      {loading && <p>Loading employees...</p>}
     </div>
   );
 }
