@@ -47,9 +47,9 @@ main
 
 ## Screenshots
 
-EmployeeTable - "C:\Users\DELL\Pictures\Screenshots\Screenshot 2026-11-05 110159.png"
-EmployeeForm - "C:\Users\DELL\Pictures\Screenshots\Screenshot 2026-11-05 110217.png"
-SearchBar - "C:\Users\DELL\Pictures\Screenshots\Screenshot 2026-11-05 110233.png"
+EmployeeTable - ".\screenshots\EmployeeTable.png"
+EmployeeForm - ".\screenshots\EmployeeForm.png"
+SearchBar - ".\screenshots\SearchBox.png"
 
 ##  Author
 
