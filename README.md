@@ -45,6 +45,12 @@ main
   └── develop
         └── feature/employee-management-ui
 
+## Screenshots
+
+EmployeeTable - "C:\Users\DELL\Pictures\Screenshots\Screenshot 2026-11-05 110159.png"
+EmployeeForm - "C:\Users\DELL\Pictures\Screenshots\Screenshot 2026-11-05 110217.png"
+SearchBar - "C:\Users\DELL\Pictures\Screenshots\Screenshot 2026-11-05 110233.png"
+
 ##  Author
 
 GitHub: [@Hemapriyar05](https://github.com/Hemapriyar05)
